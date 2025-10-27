@@ -29,7 +29,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/auth' element={<Auth/>}/>
-          <Route path='/isLoggin' element={<IsLoggin/>}/>
           <Route path='/getCourse/:courseId' element={<SelectCourse/>}/>
           <Route path='/myCourse' element={<MyCourse/>}/>
           <Route path='/profile' element={<UserProfile/>}/>
