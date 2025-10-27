@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import SelectModule from "../../components/CourseComponents/selectModule";
+import SelectModule from "../../components/CourseComponents/SelectModule.jsx";
 
 export default function AdminSelectCourse() {
   const [course, setCourse] = useState();
