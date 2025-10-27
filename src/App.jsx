@@ -17,6 +17,7 @@ import AllCourse from './Page/ManagerPages/AllCourse'
 import ManagerProfile from './Page/ManagerPages/ManagerProfile'
 import Instructor from './Page/ManagerPages/Instructor'
 import GetInstructor from './Page/ManagerPages/GetInstructor'
+import Footer from './layouts/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -51,6 +52,7 @@ function App() {
 
 
           </Routes>
+          <Footer/>
       </BrowserRouter>
     </>
   )

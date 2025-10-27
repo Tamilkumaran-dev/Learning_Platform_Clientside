@@ -27,87 +27,91 @@ export default function Home() {
   }, [search, page]); // re-fetch when search or page changes
 
   return (
-    <div style={{ padding: "20px" }}>
-      <input
-        type="search"
-        name="search"
-        id="search"
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setPage(1); // reset to first page when searching
-        }}
-        value={search}
-        placeholder="Search courses..."
-        style={{ padding: "8px", width: "250px", marginBottom: "20px" }}
-      />
+    <div className="min-h-screen bg-black text-white px-4 py-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1); // reset to first page when searching
+            }}
+            value={search}
+            placeholder="Search courses..."
+            className="w-full sm:w-64 p-2 rounded-md bg-[#000000] border border-[#1DCD9F] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#169976]"
+          />
+          <div className="text-sm text-gray-300">
+            Showing results — Page {page} of {totalPages}
+          </div>
+        </div>
 
-      <div>
-        {courses.length > 0 ? (
-          <ul>
-            {courses.map((course, i) => {
-              const daysOld =
-                (new Date() - new Date(course.time)) / (1000 * 60 * 60 * 24);
-              const isNew = daysOld < 30;
+        <div>
+          {courses.length > 0 ? (
+            <ul className="space-y-4">
+              {courses.map((course, i) => {
+                const daysOld =
+                  (new Date() - new Date(course.time)) / (1000 * 60 * 60 * 24);
+                const isNew = daysOld < 30;
 
-              return (
-                <Link to={`/getCourse/${course.id}`}>
-                <li
-                  key={i}
-                  style={{
-                    marginBottom: "1.5rem",
-                    borderBottom: "1px solid #ddd",
-                    paddingBottom: "1rem",
-                  }}
-                >
-                  <h3 style={{ color: "red" }}>{isNew ? "NEW 🔥" : ""}</h3>
-                  <h2>Course: {course.courseTitle}</h2>
-                  <p>{course.courseDes}</p>
-                  <p>Modules: {course.modules?.length || 0}</p>
-                </li>
-                </Link>
-              );
-            })}
-          </ul>
-        ) : (
-          <h2>No courses found</h2>
-        )}
-      </div>
+                return (
+                  <Link
+                    to={`/getCourse/${course.id}`}
+                    key={course.id ?? i}
+                    className="block"
+                  >
+                    <li
+                      className="bg-[#222222] p-4 rounded-lg hover:shadow-lg transition-shadow"
+                    >
+                      <h3 className="text-sm font-semibold text-[#1DCD9F]">
+                        {isNew ? "NEW 🔥" : ""}
+                      </h3>
+                      <h2 className="text-lg font-bold mt-1">Course: {course.courseTitle}</h2>
+                      <p className="mt-2 text-gray-200">{course.courseDes}</p>
+                      <p className="mt-2 text-sm text-gray-400">
+                        Modules: {course.modules?.length || 0}
+                      </p>
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+          ) : (
+            <h2 className="text-center text-gray-400">No courses found</h2>
+          )}
+        </div>
 
-      {/* Pagination Controls */}
-      <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-        <button
-          disabled={page === 1}
-          onClick={() => setPage((prev) => prev - 1)}
-          style={{
-            padding: "8px 16px",
-            cursor: page === 1 ? "not-allowed" : "pointer",
-            backgroundColor: page === 1 ? "#ccc" : "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-          }}
-        >
-        Prev
-        </button>
+        {/* Pagination Controls */}
+        <div className="flex items-center justify-between gap-4 mt-8">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage((prev) => prev - 1)}
+            className={`px-4 py-2 rounded-md text-white font-medium transition-all ${
+              page === 1
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-[#1DCD9F] hover:bg-[#169976] text-black"
+            }`}
+          >
+            Prev
+          </button>
 
-        <span style={{ alignSelf: "center" }}>
-          Page {page} of {totalPages}
-        </span>
+          <span className="text-sm text-gray-300">
+            Page {page} of {totalPages}
+          </span>
 
-        <button
-          disabled={page >= totalPages}
-          onClick={() => setPage((prev) => prev + 1)}
-          style={{
-            padding: "8px 16px",
-            cursor: page >= totalPages ? "not-allowed" : "pointer",
-            backgroundColor: page >= totalPages ? "#ccc" : "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Next
-        </button>
+          <button
+            disabled={page >= totalPages}
+            onClick={() => setPage((prev) => prev + 1)}
+            className={`px-4 py-2 rounded-md text-white font-medium transition-all ${
+              page >= totalPages
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-[#1DCD9F] hover:bg-[#169976] text-black"
+            }`}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

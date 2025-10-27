@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Nav(){
+export default function Nav() {
 
-    const [sfsl, setSfsl] = useState(false); 
-    const [role, setRole] = useState("ROLE_USER");
-     const navigate = useNavigate(); 
+  const [sfsl, setSfsl] = useState(false); 
+  const [role, setRole] = useState("ROLE_USER");
+  const navigate = useNavigate(); 
 
-    useEffect(() => {
+  useEffect(() => {
     isLoggedIn();
 
     const interceptor = axios.interceptors.response.use(
@@ -34,7 +34,6 @@ export default function Nav(){
       axios.interceptors.response.eject(interceptor);
     };
   }, []);
-
 
   const isLoggedIn = async () => {
     try {
@@ -76,54 +75,65 @@ export default function Nav(){
     }
   };
 
+  return (
+    <>
+      <nav className="bg-black text-white px-6 py-3 shadow-md border-b border-[#1DCD9F]/30">
+        <div className="flex items-center justify-between max-w-7xl mx-auto">
 
-    return(
-        <>  
-            <nav>
-                {(sfsl) ? 
-                (<div>
-                    {role === "ROLE_USER" ? 
-                    (<div>
-                        
-                         <Link to={"/"}>Home</Link>
-                         <Link to={'/myCourse'}>My Learning</Link>
-                         <Link to={'/profile'}>Profile</Link>
-                    </div>)
-                    :
-                    ( role === "ROLE_ADMIN" ?
-                    (<div>
-                         <Link to={'/admin/addCourse'}>Add course</Link>
-                         <Link to={'/admin/myCourse'}>My Course</Link>
-                         <Link to={'/admin/profile'}>Profile</Link>
-                    </div>)
-                    :
-                    (
-                       (role === "ROLE_MASTER") ?
-                       (<div>
-                            <Link to={`/manager/allUsers`}>Instructors</Link>
-                            <Link to={'/manager/allCourse'}>Courses</Link>
-                            <Link to={'/manager/profile'}>Profile</Link>
-                       </div>)
-                       :
-                       (<div>
-                            no role
-                       </div>) 
-                    ))
-                    }
-                </div>)
-                :
-                (<div>
-                    <Link to={'/auth'}>Sign Up / Sign In</Link>
-                    <Link to={'/'}>Home</Link>
-                </div>)
-                }
-                 {sfsl && (
-                 <button onClick={logout}>
-                    Logout
-                 </button>
+          {/* Brand name */}
+          <Link
+            className="text-[#1DCD9F] text-2xl font-extrabold tracking-wide hover:opacity-80 transition-all"
+          >
+            LearnHub
+          </Link>
+
+          {/* Navigation links */}
+          <div className="flex items-center space-x-6">
+            {sfsl ? (
+              <>
+                {role === "ROLE_USER" && (
+                  <>
+                    <Link to="/" className="hover:text-[#1DCD9F] transition-colors">Home</Link>
+                    <Link to="/myCourse" className="hover:text-[#1DCD9F] transition-colors">My Learning</Link>
+                    <Link to="/profile" className="hover:text-[#1DCD9F] transition-colors">Profile</Link>
+                  </>
                 )}
-            </nav>
-        </>
-    )
 
+                {role === "ROLE_ADMIN" && (
+                  <>
+                    <Link to="/admin/addCourse" className="hover:text-[#1DCD9F] transition-colors">Add Course</Link>
+                    <Link to="/admin/myCourse" className="hover:text-[#1DCD9F] transition-colors">My Course</Link>
+                    <Link to="/admin/profile" className="hover:text-[#1DCD9F] transition-colors">Profile</Link>
+                  </>
+                )}
+
+                {role === "ROLE_MASTER" && (
+                  <>
+                    <Link to="/manager/allUsers" className="hover:text-[#1DCD9F] transition-colors">Instructors</Link>
+                    <Link to="/manager/allCourse" className="hover:text-[#1DCD9F] transition-colors">Courses</Link>
+                    <Link to="/manager/profile" className="hover:text-[#1DCD9F] transition-colors">Profile</Link>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <Link to="/auth" className="hover:text-[#1DCD9F] transition-colors">Sign Up / Sign In</Link>
+                <Link to="/" className="hover:text-[#1DCD9F] transition-colors">Home</Link>
+              </>
+            )}
+          </div>
+
+          {/* Logout button */}
+          {sfsl && (
+            <button
+              onClick={logout}
+              className="ml-4 px-4 py-2 rounded-md bg-[#1DCD9F] hover:bg-[#169976] text-black font-semibold transition-all"
+            >
+              Logout
+            </button>
+          )}
+        </div>
+      </nav>
+    </>
+  );
 }
