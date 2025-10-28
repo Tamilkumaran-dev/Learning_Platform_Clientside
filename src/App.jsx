@@ -17,6 +17,7 @@ import ManagerProfile from './Page/ManagerPages/ManagerProfile'
 import Instructor from './Page/ManagerPages/Instructor'
 import GetInstructor from './Page/ManagerPages/GetInstructor'
 import Footer from './layouts/Footer'
+import ManagerSignUp from './Page/ManagerPages/ManagerSignUp'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -46,7 +47,7 @@ function App() {
           <Route path='/manager/profile' element={<ManagerProfile/>}/>
           <Route path='/manager/allUsers' element={<Instructor/>}/>
         
-
+          <Route path='/manager/signup' element={<ManagerSignUp/>}/>
 
 
           </Routes>

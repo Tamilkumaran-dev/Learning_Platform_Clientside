@@ -89,6 +89,7 @@ export default function AddCourse() {
               }
               className="p-3 rounded-lg bg-[#000000] border border-[#1DCD9F]/40 focus:border-[#1DCD9F] outline-none text-white"
               placeholder="Enter course title"
+              required
             />
           </div>
 
@@ -105,6 +106,7 @@ export default function AddCourse() {
               }
               className="p-3 rounded-lg bg-[#000000] border border-[#1DCD9F]/40 focus:border-[#1DCD9F] outline-none text-white"
               placeholder="Write a short description..."
+              required
             ></textarea>
           </div>
 
