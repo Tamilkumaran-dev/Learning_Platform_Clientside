@@ -1,12 +1,8 @@
-export default {
+module.exports = {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        primary: '#1DCD9F',
-        primaryDark: '#169976',
-        dark: '#222222',
-        black: '#000000',
-      },
-    },
+    extend: {},
   },
+  plugins: [require('@tailwindcss/typography')],
 };
+

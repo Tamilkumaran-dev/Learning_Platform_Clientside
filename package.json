@@ -25,6 +25,7 @@
     "@ckeditor/ckeditor5-react": "^11.0.0",
     "@ckeditor/ckeditor5-table": "^47.1.0",
     "@ckeditor/ckeditor5-upload": "^47.1.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.16",
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
