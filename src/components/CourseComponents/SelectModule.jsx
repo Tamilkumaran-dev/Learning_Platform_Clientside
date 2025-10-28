@@ -118,7 +118,7 @@ export default function SelectModule({ moduleId }) {
             <h3 className="text-xl font-semibold mt-6 text-[#1DCD9F]">Content</h3>
             <details open className="bg-[#111] p-4 rounded-lg border border-[#1DCD9F]/30">
               <div
-                className="prose prose-invert max-w-none"
+                className="rendered-content"
                 dangerouslySetInnerHTML={{ __html: module.content }}
               />
             </details>

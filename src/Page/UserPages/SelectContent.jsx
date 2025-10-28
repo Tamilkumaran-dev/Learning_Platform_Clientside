@@ -96,7 +96,7 @@ export default function SelectContent(props) {
           <h3 className="text-gray-300">{module.moduleDes}</h3>
 
           <div
-            className="bg-[#222222] text-gray-200 p-4 rounded-xl border border-[#1DCD9F]/10"
+            className="rendered-content"
             style={{ marginTop: 10 }}
             dangerouslySetInnerHTML={{ __html: module.content }}
           />
